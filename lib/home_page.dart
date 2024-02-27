@@ -52,58 +52,83 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                color: Colors.white,
-                height: 50,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (var i = 0; i < 12; i++)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Buttons(
-                            backColor: i == 0 ? Colors.blue : Colors.grey,
-                            textColor: i == 0 ? Colors.white : Colors.black,
-                            label: 'Button ${i + 1}',
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
+        backgroundColor: Colors.teal.shade600,
+        body: Column(
+          children: [
+            Container(
+              color: Colors.white,
+              height: 50,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Buttons(
+                      backColor: Colors.blue,
+                      textColor: Colors.white,
+                      label: 'connections',
+                    ),
+                    SizedBox(width: 10),
 
-              SizedBox(height: 25),
-              TextField(
-                decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.search),
-                  contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
+                    Buttons(
+                      backColor: Colors.grey,
+                      textColor: Colors.black,
+                      label: 'Groups',
+                    ),
+                    SizedBox(width: 10),
+
+                    Buttons(
+                      backColor: Colors.grey,
+                      textColor: Colors.black,
+                      label: 'housing',
+                    ),
+                    SizedBox(width: 10),
+
+                    Buttons(
+                      backColor: Colors.grey,
+                      textColor: Colors.black,
+                      label: 'friends',
+                    ),
+                    SizedBox(width: 10),
+
+                    Buttons(
+                      backColor: Colors.grey,
+                      textColor: Colors.black,
+                      label: 'whatever',
+                    ),
+                    SizedBox(width: 10),
+                  ],
                 ),
               ),
-              SizedBox(height: 15),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
-                        ),
-                        child: ListTile(
-                          leading:Container(
+            ),
+
+
+            SizedBox(height: 25),
+            TextField(
+              decoration: InputDecoration(
+                suffixIcon: Icon(Icons.search),
+                contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+            SizedBox(height: 15),
+            Expanded(
+              child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                      child: ListTile(
+                        leading: Container(
                           width: 80,
                           height: 80,
                           decoration: BoxDecoration(
@@ -114,29 +139,33 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                         ),
-                          title: Text(items[index]),
-                          subtitle: Text('Mutual Friends: ${countOfFriends[index]}'),
-                          trailing: ElevatedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(items[index]),
+                            Text('Mutual Friends: ${countOfFriends[index]}'),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(Icons.message),
+                                  Text('Connect'),
+                                ],
+                              ),
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.message),
-                                Text('Connect'),
-                              ],
-                            ),
-                          ),
+                          ],
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
